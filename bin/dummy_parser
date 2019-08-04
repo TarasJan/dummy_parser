@@ -1,0 +1,11 @@
+#! /usr/bin/env ruby
+# frozen_sting_literal: true
+
+require 'dummy_parser'
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.on('-v', '--version', 'Prints the current version of dummy parser') do
+    puts(DummyParser::VERSION)
+  end
+end.parse!
