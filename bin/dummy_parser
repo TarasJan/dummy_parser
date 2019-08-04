@@ -12,4 +12,7 @@ opts.banner = 'Dummy program showcasing optparse module'
   opts.on('-h', '--help', 'Prints this help message') do
     puts(opts)
   end
+  opts.on('-g [USER]', '--greet [USER]', 'Greets the user before exiting') do |user|
+    puts("Hello #{user || 'User'}!")
+  end
 end.parse!
