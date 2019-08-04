@@ -4,10 +4,14 @@
 require 'dummy_parser'
 require 'optparse'
 
+options = {}
+
 OptionParser.new do |opts|
   opts.banner = 'Dummy program showcasing optparse module'
+  opts.program_name = 'Dummy Parser'
+  opts.version = DummyParser::VERSION
   opts.on('-v', '--version', 'Prints the current version of dummy parser') do
-    puts(DummyParser::VERSION)
+    puts(opts.version)
   end
   opts.on('-h', '--help', 'Prints this help message') do
     puts(opts)
@@ -24,4 +28,19 @@ OptionParser.new do |opts|
   opts.on('-s', '--[no-]smile', 'Determines the mood of the printed face') do |smile|
     puts(": - #{ smile ? ')' : '(' }")
   end
-end.parse!
+
+  # Mandatory Args:
+  opts.on('-l LIKE', '--like LIKE', TrueClass, 'Tell me if you enjoyed this article') do |like|
+    puts("#{like ? 'Thanks' : 'Apologies' }")
+  end
+
+  # Aborting :
+  opts.on('--abort', 'Stops the program') do
+    opts.abort('Aborting...')
+  end
+
+  # Empty param
+  opts.on('-b')
+end.parse!(into: options)
+
+puts(options)
