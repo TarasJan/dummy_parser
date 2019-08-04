@@ -5,7 +5,11 @@ require 'dummy_parser'
 require 'optparse'
 
 OptionParser.new do |opts|
+opts.banner = 'Dummy program showcasing optparse module'
   opts.on('-v', '--version', 'Prints the current version of dummy parser') do
     puts(DummyParser::VERSION)
+  end
+  opts.on('-h', '--help', 'Prints this help message') do
+    puts(opts)
   end
 end.parse!
