@@ -5,14 +5,23 @@ require 'dummy_parser'
 require 'optparse'
 
 OptionParser.new do |opts|
-opts.banner = 'Dummy program showcasing optparse module'
+  opts.banner = 'Dummy program showcasing optparse module'
   opts.on('-v', '--version', 'Prints the current version of dummy parser') do
     puts(DummyParser::VERSION)
   end
   opts.on('-h', '--help', 'Prints this help message') do
     puts(opts)
   end
+  # Text input
   opts.on('-g [USER]', '--greet [USER]', 'Greets the user before exiting') do |user|
     puts("Hello #{user || 'User'}!")
+  end
+  # Numeric input with = sign
+  opts.on('-n=[NUM]', '--number=[NUM]', 'Prints the happy number') do |happy|
+    puts("The happy number is #{happy}")
+  end
+  # Boolean input
+  opts.on('-s', '--[no-]smile', 'Determines the mood of the printed face') do |smile|
+    puts(": - #{ smile ? ')' : '(' }")
   end
 end.parse!
