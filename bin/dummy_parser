@@ -41,6 +41,6 @@ OptionParser.new do |opts|
 
   # Empty param
   opts.on('-b')
-end.parse!(into: options)
+end.parse!(['--like', '+', '-b'], into: options)
 
 puts(options)
